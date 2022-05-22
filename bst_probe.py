@@ -7,6 +7,7 @@ A tester program for binary search trees.
 from linkedbst import LinkedBST
 import random
 
+
 def main():
 
     tree = LinkedBST()
@@ -19,13 +20,17 @@ def main():
     tree.add("E")
     tree.add("G")
 
+    print("Height: ", tree.height())
+
+    print("Is balanced: ", tree.is_balanced())
+
     print("\nExpect True for A in tree: ", "A" in tree)
 
     print("\nString:\n" + str(tree))
 
     clone = LinkedBST(tree)
     print("\nClone:\n" + str(clone))
-    
+
     print("Expect True for tree == clone: ", tree == clone)
 
     print("\nFor loop: ", end="")
@@ -33,18 +38,21 @@ def main():
         print(item, end=" ")
 
     print("\n\ninorder traversal: ", end="")
-    for item in tree.inorder(): print(item, end = " ")
-    
-    #print("\n\npreorder traversal: ", end="")
-    #for item in tree.preorder(): print(item, end = " ")
-    
-    #print("\n\npostorder traversal: ", end="")
-    #for item in tree.postorder(): print(item, end = " ")
-    
-    #print("\n\nlevelorder traversal: ", end="")
-    #for item in tree.levelorder(): print(item, end = " ")
+    for item in tree.inorder():
+        print(item, end=" ")
 
-    print("\n\nRemoving all items:", end = " ")
+    print("\n\npreorder traversal: ", end="")
+    for item in tree.preorder():
+        print(item, end=" ")
+
+    print("\n\npostorder traversal: ", end="")
+    for item in tree.postorder():
+        print(item, end=" ")
+
+    # print("\n\nlevelorder traversal: ", end="")
+    # for item in tree.levelorder(): print(item, end=" ")
+
+    print("\n\nRemoving all items:", end=" ")
     for item in "ABCDEFG":
         print(tree.remove(item), end=" ")
 
@@ -52,34 +60,44 @@ def main():
 
     tree = LinkedBST(range(1, 16))
     print("\nAdded 1..15:\n" + str(tree))
-    
+
+    print("Is balanced: ", tree.is_balanced())
+
+    tree.rebalance()
+
+    print("Is balanced: ", tree.is_balanced())
+
+    print(str(tree))
+    print("-" * 50)
+
     lyst = list(range(1, 16))
 
     random.shuffle(lyst)
     tree = LinkedBST(lyst)
     print("\nAdded ", lyst, "\n" + str(tree))
 
-
-    lyst = [113,30,68,74,45,91,88]
-    #random.shuffle(lyst)
+    lyst = [113, 30, 68, 74, 45, 91, 88]
+    # random.shuffle(lyst)
     tree = LinkedBST(lyst)
     print(tree, tree.height())
-    print(tree.isBalanced())
-    print(tree.rangeFind(30,91))
+    print("Is balanced: ", tree.is_balanced())
+    tree.rebalance()
+    print("-" * 50)
+    print("Is balanced: ", tree.is_balanced())
+    print(tree)
+    print(tree.rangeFind(30, 91))
     print(tree.successor(20))
     print(tree.predecessor(50))
     tree.rebalance()
     print(tree)
-   #print("\nAdded ", lyst, "\n" + str(tree))
-   # tree.remove(10)
-    #print("\nAdded ", lyst, "\n" + str(tree))
-    #tree.remove(12)
-    #print("\nAdded ", lyst, "\n" + str(tree))
 
 
-    
+# print("\nAdded ", lyst, "\n" + str(tree))
+# tree.remove(10)
+# print("\nAdded ", lyst, "\n" + str(tree))
+# tree.remove(12)
+# print("\nAdded ", lyst, "\n" + str(tree))
+
+
 if __name__ == "__main__":
     main()
-
-
-
